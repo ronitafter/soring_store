@@ -1,0 +1,40 @@
+1 oneToOne - unidirectional -  fk:
+	owner:
+	// class//
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "address_id")
+	inverse:
+	non
+2 oneToOne - bidirectional -  fk 
+	owner:
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "address_id")
+	inverse:
+	@OneToOne(mappedBy = "address")	
+3 oneToMany - unidirectional - fk
+	owner:
+	@OneToMany
+	@JoinColumn(name="coupon_id")
+	inverse
+	non
+4 manyToOne - unidirectional - fk
+	owner
+	@ManyToOne
+	@JoinColumn(name= "university_id")
+	inverse
+	non
+	// 5+6 bidirectional
+5 oneToMany - bidirectional  - fk
+	//Coupon class
+	owner:
+	@ManyToOne
+	@JoinColumn(name="company_id")
+	
+6 manyToOne - bidirectional  - fk
+		//Company class
+	inverse:
+	@OneToMany(mappedBy = "company")
+7 manyToMany - joinTable
+@ManyToMany
+	@JoinTable(name = "customers_coupons", joinColumns = @JoinColumn(name= "customer_id"), 
+	inverseJoinColumns =  @JoinColumn(name= "coupon_id"))s
